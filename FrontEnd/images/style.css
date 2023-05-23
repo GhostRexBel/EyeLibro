@@ -384,9 +384,21 @@ input.text:hover {
 .rounded-button {
   display: inline-block;
   padding: 5px;
-  background-color: #5f5f5f;
+  background-color: #b0b0b0;
   color: #a90000;
   border-radius: 20px;
   border: none;
   cursor: pointer;
+  font-size: 10px;
+}
+
+.rounded-button:hover {
+  display: inline-block;
+  padding: 5px;
+  background-color: #a90000;
+  color: #a29c9c;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
 }

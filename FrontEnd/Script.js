@@ -1,57 +1,69 @@
-const EyeTracker = document.getElementById("EyeTracker");
-const BookDownload = document.getElementById("BookDownload");
-const ViewNormal = document.getElementById("ViewNormal");
+const EyeTracker = document.querySelectorAll("#EyeTracker button");
+const BookDownload = document.querySelectorAll("#BookDownload button");
+const ViewNormal = document.querySelectorAll("#ViewNormal button");
 
-EyeTracker.addEventListener("click", async function () {
-  let transactionBookName = this.getAttribute("data-value");
-  let url = `http://localhost:4400/Link?bookName=${transactionBookName}`;
+EyeTracker.forEach((button) => {
+  button.addEventListener("click", async function () {
+    let transactionBookName = this.getAttribute("data-value");
+    let url = `http://localhost:4400/Link?bookName=${encodeURIComponent(
+      transactionBookName
+    )}`;
 
-  try {
-    const response = await fetch(url);
-    if (response.ok) {
-      const data = await response.json();
-      window.open(data.link);
-    } else {
-      throw new Error("Error en la respuesta del servidor");
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        window.open(data.link);
+      } else {
+        throw new Error("Error en la respuesta del servidor");
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
+  });
 });
 
-BookDownload.addEventListener("click", async function () {
-  let transactionBookName = this.getAttribute("data-value");
-  let url = `http://localhost:4400/LinkDownload?bookName=${transactionBookName}`;
+BookDownload.forEach((button) => {
+  button.addEventListener("click", async function () {
+    let transactionBookName = this.getAttribute("data-value");
+    let url = `http://localhost:4400/LinkDownload?bookName=${encodeURIComponent(
+      transactionBookName
+    )}`;
 
-  try {
-    const response = await fetch(url);
-    if (response.ok) {
-      const data = await response.json();
-      const link = document.createElement("a");
-      link.href = data.link;
-      link.download = transactionBookName;
-      link.click();
-    } else {
-      throw new Error("Error en la respuesta del servidor");
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        const link = document.createElement("a");
+        link.href = data.link;
+        link.download = transactionBookName;
+        link.click();
+      } else {
+        throw new Error("Error en la respuesta del servidor");
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
+  });
 });
 
-ViewNormal.addEventListener("click", async function () {
-  let transactionBookName = this.getAttribute("data-value");
-  let url = `http://localhost:4400/Link?bookName=${transactionBookName}`;
+ViewNormal.forEach((button) => {
+  button.addEventListener("click", async function () {
+    let transactionBookName = this.getAttribute("data-value");
+    let url = `http://localhost:4400/Link?bookName=${encodeURIComponent(
+      transactionBookName
+    )}`;
 
-  try {
-    const response = await fetch(url);
-    if (response.ok) {
-      const data = await response.json();
-      window.open(data.link);
-    } else {
-      throw new Error("Error en la respuesta del servidor");
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        window.open(data.link);
+      } else {
+        throw new Error("Error en la respuesta del servidor");
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
+  });
 });

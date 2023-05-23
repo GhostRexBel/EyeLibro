@@ -32,10 +32,14 @@ app.use(cors());
 
 app.get("/Link", async (req, res) => {
   try {
+    console.log(req.query.bookName);
     const link = await consultarLinkPorNombre(req.query.bookName);
+    console.log(link);
+    res.json({ link: link });
     return link;
   } catch (error) {
     console.error("Error:", error);
+    res.status(500).json({ error: "Error en el servidor" });
   }
 });
 
@@ -45,6 +49,7 @@ app.get("/LinkDownload", async (req, res) => {
     const link = await consultarLinkDescargaPorNombre(req.query.bookName);
     console.log(link);
     res.json({ link: link });
+    return link;
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Error en el servidor" });
